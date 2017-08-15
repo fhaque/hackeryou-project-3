@@ -1,7 +1,8 @@
 const CONSTANTS = {
     //GAME LOOP CONSTANTS
-    maxFPS: 60, //seconds
+    maxFPS: 1, //seconds
     msecPerSec: 1000, // msec/sec
+    maxGameLogicLag: 240, // # of allowed updates
 
     //PET CONSTANTS //
     initialPetHappiness: 75,
