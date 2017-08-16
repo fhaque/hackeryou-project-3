@@ -19,9 +19,29 @@ const GAME_DATA = {
 
         },
         sprite: {
-            position: CONSTANTS.initialPetPosition,
-            asset: 'assets/trump_sample.png',
+            position:   CONSTANTS.initialPetPosition,
+            asset:      'assets/trump_sample.png',
+            id:         'game-trump',
         }
     },
+
+    sceneBG: {
+        data: {},
+        sprite: {
+            position:   CONSTANTS.initialPetPosition,
+            asset:      'assets/oval-office.jpg',
+            id:         'game-sceneBG',
+        }
+    },
+
+    poop: {
+        data: {},
+        sprite: {
+            position:   CONSTANTS.initialPetPosition,
+            asset:      'assets/small_poop.png',
+            id:         '',
+            class:      'game-poop',
+        }
+    }
 
 };

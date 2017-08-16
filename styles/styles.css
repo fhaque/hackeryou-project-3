@@ -1,0 +1,26 @@
+body {
+    position: relative;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+#game-trump {
+    position: absolute;
+    transform: translate(-50%,-50%);
+}
+
+#game-sceneBG {
+    position: absolute;
+    z-index: -1;
+
+    width: 100%;
+}
+
+.game-poop {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    z-index: 999999;
+}

@@ -1,7 +1,7 @@
 //Algorithm adapted and modified from:
 // http://isaacsukin.com/news/2015/01/detailed-explanation-javascript-game-loops-and-timing#first-attempt
 class GameLoop {
-    constructor(timeStep, minRefreshLength, maxUpdateSteps) {
+    constructor(domElement, timeStep, minRefreshLength, maxUpdateSteps) {
         //limiter for the frames per second of the game
         this.minRefreshLength = minRefreshLength || (CONSTANTS.msecPerSec / CONSTANTS.maxFPS);
 
@@ -17,9 +17,18 @@ class GameLoop {
 
         //accumulates time if not repainting next frame fast enough
         this.repaintTimeBuffer = 0; 
-        
-        
 
+        //hold all the sprites that are in the game
+        this.sprites = [];
+
+        //Custom Event Handling Register
+        this.eventRegistry = {};
+
+        //register game loop handlers
+        this.registerEventListener('remove', this.removeSprite.bind(this));
+
+        //game DOM element
+        this.domElement = domElement;
     }
 
     loop(requestFrameMethod, timestamp) {
@@ -32,7 +41,6 @@ class GameLoop {
             return;
         }
 
-        console.log("looping");
         //accumulate time buffer since last frame
         this.repaintTimeBuffer += timestamp - this.lastFrameTime;
 
@@ -58,10 +66,22 @@ class GameLoop {
 
     update(timeStep) {
         timeStep = timeStep || this.timeStep;
+
+        for(let i = 0; i < this.sprites.length; i++) {
+            if ('update' in this.sprites[i]) {
+                this.sprites[i].update(timeStep);
+            }
+        }
+
+        console.log("looping");
     }
 
     render() {
-
+        for(let i = 0; i < this.sprites.length; i++) {
+            if ('render' in this.sprites[i]) {
+                this.sprites[i].render();
+            }
+        }
     }
 
     pause() {
@@ -72,7 +92,28 @@ class GameLoop {
 
     }
 
-}
+    removeSprite(sprite) {
+        const index = this.sprites.indexOf(sprite);
+        this.sprites.splice(index, 1);
+    }
 
-var blah = new GameLoop();
-blah.loop(window.requestAnimationFrame.bind(this), 0);
+    registerSprites(spriteArray) {
+        this.sprites = this.sprites.concat(spriteArray);
+    }
+
+    registerEventListener(name, cb) {
+        if ( !(name in this.eventRegistry) ) {
+            this.eventRegistry[name] = [];
+        }
+        this.eventRegistry[name].push(cb);
+    }
+
+    triggerEvent(name, data) {
+        if(name in this.eventRegistry) {
+            for(let i = 0; i < this.eventRegistry[name].length; i++) {
+                this.eventRegistry[name][i](data);
+            }
+        }
+    }
+
+}
