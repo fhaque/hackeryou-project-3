@@ -22,14 +22,15 @@ const GAME_DATA = {
             position:   CONSTANTS.initialPetPosition,
             asset:      'assets/trump_sample.png',
             id:         'game-trump',
+            moveStates: ['left', 'right', 'jumpTo', 'pace']
         }
     },
 
     sceneBG: {
         data: {},
         sprite: {
-            position:   CONSTANTS.initialPetPosition,
-            asset:      'assets/oval-office.jpg',
+            position:   {x: 0, y: 0},
+            asset:      'assets/cartoon-office-BG.png',
             id:         'game-sceneBG',
         }
     },
