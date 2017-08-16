@@ -9,13 +9,12 @@ $(function() {
     
     trump.addToDom();
 
-    // sceneBG.init(GAME_DATA.sceneBG, world);
-
-    // sceneBG.addToDom();
-
-    // console.log(trump.domElement.parent());
-    // console.log(trump);
+    gameBars.init(trump);
     
     setTimeout(world.loop.bind(world), 1500);
+
+
+    
+
 
 });

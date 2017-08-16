@@ -5,8 +5,8 @@ const CONSTANTS = {
     maxGameLogicLag: 240, // # of allowed updates
 
     //PET CONSTANTS //
-    initialPetHappiness: 75,
-    initialPetEnergy: 75,
+    initialPetHappiness: 80,
+    initialPetEnergy: 20,
     initialPetPosition: {
         x: 0,
         y: 20

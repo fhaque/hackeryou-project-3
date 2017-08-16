@@ -143,6 +143,47 @@ trump.deltaVal = function(delta, propertyName) {
 
 //////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////
+
+
+// Health and Energy Bars
+
+
+//////////////////////////////////////////////////////////////////////////
+
+gameBars = {};
+
+gameBars.init = function(character) {
+    this.targetCharacter = character;
+    this.domElement = $('#game-bars');
+    this.domElement.happinessBar = $('#game-happiness-bar .bar__level');
+    this.domElement.energyBar = $('#game-energy-bar .bar__level');
+
+    // console.log(this.domElement);
+};
+
+gameBars.draw = function() {
+    var currentHappinessPercentage = 100 * this.targetCharacter.happiness.current / (this.targetCharacter.happiness.max - this.targetCharacter.happiness.min);
+
+    var currentEnergyPercentage = 100 * this.targetCharacter.energy.current / (this.targetCharacter.energy.max - this.targetCharacter.energy.min);
+
+    console.log(currentHappinessPercentage);
+    console.log(currentEnergyPercentage);
+
+    // this.domElement.happinessBar.css('background-color', 'green');
+    this.domElement.happinessBar.css('width', `${currentHappinessPercentage}%`);
+    this.domElement.energyBar.css('width', `${currentEnergyPercentage}%`);
+};
+
+
+
+
+
+
+
+
+
+
 
 //////////////////////////////////////////////////////////////////////////
 

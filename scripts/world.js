@@ -32,4 +32,5 @@ world.update = function() {
 world.draw = function() {
     // sceneBG.draw();
     trump.draw();
+    gameBars.draw();
 };
