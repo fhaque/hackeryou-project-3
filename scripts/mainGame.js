@@ -34,7 +34,7 @@ $(function() {
     $('#game-clean-poop').on('click', function(){
         world.gameMode = 'clean-poop';
         console.log('clicked');
-        $('#game-world').css('cursor','url(assets/mc.png), auto');
+        $('#game-world').css('cursor','url(assets/sponge-medium.png), auto');
     });
     // setTimeout(() => {world.gameMde = 'lose'}, 2000);
 

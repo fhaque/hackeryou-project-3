@@ -35,7 +35,11 @@ world.update = function() {
         trump.domElement.droppable();
      } else {
         //  food.removeFromDom();
-     } 
+     }
+
+    if(self.gameMode !== 'clean-poop') {
+        $('#game-world').css('cursor','default');
+    }
 
 
     trump.update();
