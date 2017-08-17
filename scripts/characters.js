@@ -39,10 +39,20 @@ trump.addToDom = function() {
     var self = this;
 
     if (!this.inDom) {
-        this.domElement.on('click', function() {
-            if(self.world.gameMode === 'feed') {
+        // this.domElement.on('click', function() {
+        //     if(self.world.gameMode === 'feed') {
+        //         self.feed();
+        //         self.world.gameMode = 'normal';
+        //     }
+        // });
+
+        trump.domElement.droppable({
+            drop: function() {
                 self.feed();
-                self.world.gameMode = 'normal';
+                // food.removeFromDom();
+                $('.game-food').css('display', 'none');
+                self.gameMode = 'normal';
+                console.log("DROPPED!!!");    
             }
         });
         
@@ -326,10 +336,73 @@ poopFactory.draw = function() {
     }
 };
 
+//////////////////////////////////////////////////////////////////////////
 
 
+// Food
 
 
+//////////////////////////////////////////////////////////////////////////
+var food = {};
+food.init = function(obj, world) {
+    this.world = world;
+    $.extend(this, obj.data);
+    $.extend(this, obj.sprite);
+
+    this.inDom = false;
+    this.createDomElement();
+
+    console.log(this.domElement);
+};
+
+food.createDomElement = function() {
+    
+    this.domElement = $('<div>');
+    this.domElement.image = $('<img>');
+    this.domElement.append(this.domElement.image);
+
+    if (this.id != '') {
+        this.domElement.attr('id', this.id);
+    }
+
+    if ('class' in this) {
+        this.domElement.addClass(this.class);
+    }
+    
+};
+    
+food.removeFromDom = function() {
+    if (this.inDom) {
+        this.domElement.remove();
+        this.inDom = false;
+    }
+};
+
+food.addToDom = function() {
+    var self = this;
+
+    if (!this.inDom) {
+        console.log('added to DOM');
+        this.domElement.draggable();
+        this.domElement.removeAttr('style');
+        
+        this.world.domElement.append(this.domElement);
+        this.inDom = true;
+    }
+};
+
+food.draw = function(timeStep) {
+    timeStep = timeStep || this.world.timeStep;
+    this.addToDom();
+
+    this.domElement.image.attr('src', this.asset);
+    this.domElement.css('left', `${this.position.x}%`);
+    this.domElement.css('bottom', `${this.position.y}%`);
+};
+
+food.update = function() {
+
+};
 
 
 

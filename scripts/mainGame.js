@@ -12,6 +12,9 @@ $(function() {
     
     trump.addToDom();
 
+    food.init(GAME_DATA.food, world);
+    food.draw();
+
     gameBars.init(trump);
 
     poopFactory.init(GAME_DATA.poop, world);
@@ -20,9 +23,22 @@ $(function() {
 
     setTimeout(() => trump.poop(), 1600);
 
+
+    $('#game-feed').on('click', function(){
+        world.gameMode = 'feed';
+        $('.game-food').removeAttr('style');
+        $('.game-food').css('display', 'block');
+        $('.game-food').draggable();
+    });
+
+    $('#game-clean-poop').on('click', function(){
+        world.gameMode = 'clean-poop';
+        console.log('clicked');
+        $('#game-world').css('cursor','url(assets/mc.png), auto');
+    });
     // setTimeout(() => {world.gameMde = 'lose'}, 2000);
 
-    world.gameMode = 'clean-poop';
+    world.gameMode = 'normal';
 
     world.loop.call(world);
 

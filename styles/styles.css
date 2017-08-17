@@ -349,3 +349,8 @@ body {
 
 #game-buttons button {
   display: block; }
+
+.game-food {
+  position: absolute;
+  display: none;
+  width: 5%; }

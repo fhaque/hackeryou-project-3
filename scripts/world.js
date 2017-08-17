@@ -28,6 +28,15 @@ world.loop = function() {
 
 
 world.update = function() {
+    // console.log(world.gameMode);
+    var self = this;
+    if (self.gameMode === 'feed') {
+        // food.addToDom();
+        trump.domElement.droppable();
+     } else {
+        //  food.removeFromDom();
+     } 
+
 
     trump.update();
     poopFactory.update();
@@ -39,4 +48,5 @@ world.draw = function() {
     gameBars.draw();
 
     poopFactory.draw();
+    // food.draw();
 };

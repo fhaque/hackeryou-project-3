@@ -147,7 +147,6 @@ var guessGame = function(gameResult) {
 		}
 	];
 	
-	var seconds = 30;
 
 
 	var newCharacterOrder = gameData.sort(function() {
@@ -155,7 +154,7 @@ var guessGame = function(gameResult) {
 	});
 	var mobileCharacters = newCharacterOrder.slice(0,6)
 
-	if ($(window).width() < 0) {
+	if ($(window).width() < 768) {
 		var array = mobileCharacters
 			
 	} else {

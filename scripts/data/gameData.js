@@ -47,6 +47,16 @@ const GAME_DATA = {
             id:         '',
             class:      'game-poop',
         }
+    },
+
+    food: {
+        data: {},
+        sprite: {
+            position:   {x: 0, y: 0},
+            asset:      'assets/twitter-bird.png',
+            id:         '',
+            class:      'game-food'
+        }
     }
 
 };
