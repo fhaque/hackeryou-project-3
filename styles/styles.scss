@@ -1,0 +1,224 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
+input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.wrapper {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.guessGame {
+	display: none;
+	margin: auto;
+	flex-direction: column;
+	position: relative;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+.ui-dialog {
+	padding: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+
+h1 {
+	padding-right: 10px;
+}
+.characterCards {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.card {
+	border: 1px solid #D3D3D3;
+	box-shadow: 5px 5px 2px #D3D3D3;
+	border-radius: 30px;
+	width: calc(14.25% - 10px);
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	margin: 5px;
+	background: #F5F5F5;
+}
+
+.card h2 {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.card img {
+	padding: 10px 0;
+	max-width: 80%;
+	max-height: 70%;
+}
+
+
+.traitButtons {
+	display: flex;
+	padding-top: 10px;
+}
+
+.traitButtons form {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	margin: 5px;
+	h3 {
+		font-size: 15px;
+		margin: 0;
+		padding-bottom: px;
+	}
+}
+
+button {
+	border: none;
+	margin: 1px;
+	background: white;
+	border: 1px solid #d3d3d3;
+	border-radius: 10px;
+}
+
+button:focus {
+	outline: 0;
+	border: 3px solid #d3d3d3;
+}
+
+.win-or-lost {
+	flex: none;
+	position: absolute;
+	top: 30%;
+	right: 50%;
+	transform:translate(50%, -50%);
+	font-size: 60px;
+	background: #D3D3D3;
+	border: 1px solid #D3D3D3;
+	border-radius: 10px;
+	text-transform: uppercase;
+}
+
+
+@media (max-width: 768px) {
+	.guessGame {
+		flex-direction: row;
+	}
+
+
+	.characterCards {
+		align-content: center;
+		width: 75%;
+	}
+	.card {
+		height: 180px;
+		width: calc(50% - 20px);
+	}
+	.traitButtons {
+		flex-direction: column;
+		width: 25%;
+	}
+
+	.traitButtons form {
+		text-align: left;
+		width: 100%;
+	}
+
+	.win-or-lost {
+		top: 40%;
+		right: 65%;
+	}
+}
+
+//PET GAME Styles ////////////////////////////////
+html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+#game-world img {
+    display: block;
+    width: 100%;
+}
+
+#game-trump {
+    position: absolute;
+    transform: translate(-50%,50%);
+    
+    width: 20%;
+
+    filter: hue-rotate(90deg);
+}
+
+#game-sceneBG {
+    position: absolute;
+    z-index: -1;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    background-image: url('../assets/cartoon-office-BG.png');
+    background-size: cover;
+    background-position: center;
+
+}
+
+.game-poop {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    // z-index:;
+
+    width: 5%;
+}
+
+#game-world {
+    height: 100vh;
+    width: 100%;
+
+    /* z-index: 1; */
+}
+
+.bar {
+    width: 30%;
+    min-height: 20px;
+    height: 20px;
+
+    /* z-index: 1; */
+
+    border: 1px solid red;
+}
+
+
+.bar__level {
+    /* width: 60%; */
+    /* min-height: 100%; */
+    height: 100%;
+
+    /* z-index: 1; */
+
+    background-color: blue;
+}
+
+#game-buttons {
+
+	button {
+		display: block;
+	}
+}

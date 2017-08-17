@@ -104,6 +104,10 @@ trump.isHappy = function() {
     return !this.checkIsDepleted('happiness');
 };
 
+trump.fullHappiness = function(val) {
+    this.happiness.current = this.happiness.max;
+}
+
 trump.deltaEnergy = function(delta) {
     this.deltaVal(delta, 'energy');
 };
