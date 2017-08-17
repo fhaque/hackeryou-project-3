@@ -1,4 +1,8 @@
 const GAME_DATA = {
+    world: {
+        gameModes: ['normal', 'clean-poop', 'feed', 'guess-who', 'win', 'lose']
+    },
+
     trump: {
         data: {
             states: ['happy', 'angry', 'dirty', 'normal'],
@@ -15,7 +19,7 @@ const GAME_DATA = {
                 max:        CONSTANTS.maxPetEnergy,
             },
             
-            dirtyLimit: 2, //number of poops
+            dirtyFactor: 0.1, //multiplier for being dirty
 
         },
         sprite: {
@@ -39,7 +43,7 @@ const GAME_DATA = {
         data: {},
         sprite: {
             position:   CONSTANTS.initialPetPosition,
-            asset:      'assets/small_poop.png',
+            asset:      'assets/medium_poop.png',
             id:         '',
             class:      'game-poop',
         }

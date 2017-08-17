@@ -9,10 +9,15 @@ const CONSTANTS = {
     initialPetEnergy: 20,
     initialPetPosition: {
         x: 0,
-        y: 20
+        y: 25
     },
     minPetHappiness: 0,
     maxPetHappiness: 100,
     minPetEnergy: 0,
     maxPetEnergy: 100,
+
+    feedEnergy: 10,
+    
+    timeHappinessDelta: -0.01,
+    timeEnergyDelta: -0.007
 };

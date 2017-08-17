@@ -1,6 +1,7 @@
 var world = {};
 
-world.init = function(domBindingElement, timeStep) {
+world.init = function(obj, domBindingElement, timeStep) {
+    $.extend(this, obj);
     this.domElement = domBindingElement;
 
     this.timeStep = timeStep || (CONSTANTS.msecPerSec / CONSTANTS.maxFPS);
@@ -10,13 +11,14 @@ world.init = function(domBindingElement, timeStep) {
     this.boundary.right = 100;
     this.boundary.bottom = 0;
     this.boundary.top = 100;
+
+    this.gameMode = 'normal';
 };
 
 world.loop = function() {
     var self = this;
     // console.log(self);
     return setInterval(function() {
-        console.log("HELLO!");
         self.update();
         self.draw();
         
@@ -26,11 +28,15 @@ world.loop = function() {
 
 
 world.update = function() {
+
     trump.update();
+    poopFactory.update();
 };
 
 world.draw = function() {
     // sceneBG.draw();
     trump.draw();
     gameBars.draw();
+
+    poopFactory.draw();
 };
