@@ -33,10 +33,12 @@ $(function() {
         close: function() {
             $('#game-instructions').dialog('destroy').remove();
             world.gameMode = 'normal';
-            world.loop.call(world);
+            world.setIntervalID = world.loop.call(world);
 
         }
-    }).removeAttr('style').parent().addClass('game-instructions-dialog');
+    })
+    .removeAttr('style').parent().addClass('game-instructions-dialog');
+    
     $('.game-instructions-dialog').removeAttr('style');
 
     $('.game-instructions-dialog').find('.ui-dialog-titlebar').addClass('game-instructions-close');
@@ -56,7 +58,7 @@ $(function() {
     });
     // setTimeout(() => {world.gameMde = 'lose'}, 2000);
 
-    world.gameMode = 'normal';
+    // world.gameMode = 'normal';
 
     
 

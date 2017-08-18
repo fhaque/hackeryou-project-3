@@ -51,15 +51,50 @@ world.update = function() {
         trump.happinessCounter += 1;
     } 
     
+        // if( world.checkIfWon() ) {
+        //     world.gameMode = 'win';
+            
 
-    if( world.checkIfWon() ) {
-        world.gameMode = 'win';
-        console.log("WIN");
+        //     clearInterval(this.setIntervalID);
 
-        $('#game-result')
-        .html('<h2>Congrats? Trump will consider you for a cabinet position.</h2>')
-        .dialog();
-    }
+        //     $('#game-result')
+        //     .html('<h2>Congrats? Trump will consider you for a cabinet position.</h2>')
+        //     .dialog()
+        //     .removeAttr('style').parent().addClass('game-result-dialog');
+
+        //     $('#game-result').css('display', 'block');
+            
+        //     $('.game-result-dialog').removeAttr('style');
+        
+        //     $('.game-result-dialog').find('.ui-dialog-titlebar').remove();
+        // }
+
+        if ( world.gameMode === 'lose' || world.checkIfWon() ) {
+            
+
+            var resultHTML;
+            if (world.gameMode === 'lose') {
+                console.log("LOSE");
+                resultHTML = `<h2>You Lose! Trump will tweet about your stupidity!</h2>`
+            } else if (world.gameMode === 'win') {
+                console.log("WIN");
+                resultHTML = `<h2>Congrats? Trump will consider you for a cabinet position.</h2>`
+            }
+
+            clearInterval(this.setIntervalID);
+
+            $('#game-result')
+            .html(resultHTML)
+            .dialog().css('display','block')
+            .removeAttr('style').parent().addClass('game-result-dialog');
+
+            $('#game-result').css('display', 'block');
+            
+            $('.game-result-dialog').removeAttr('style');
+        
+            $('.game-result-dialog').find('.ui-dialog-titlebar').remove();
+        }
+    
 
 
     trump.update();
@@ -76,5 +111,10 @@ world.draw = function() {
 };
 
 world.checkIfWon = function() {
-    return trump.happinessCounter >= CONSTANTS.happinessCounterWinCondition;
+    if (trump.happinessCounter >= CONSTANTS.happinessCounterWinCondition) {
+        world.gameMode = 'win';
+        return true;
+    } else {
+        return false;
+    }
 }

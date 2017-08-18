@@ -283,6 +283,19 @@ body {
 .game-instructions-close {
   padding-left: 12%; }
 
+#game-result {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 20px;
+  margin: 0 auto;
+  width: 75%; }
+
+.game-result-dialog {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%; }
+
 #game-world img {
   display: block;
   width: 100%; }

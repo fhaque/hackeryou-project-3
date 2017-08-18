@@ -83,10 +83,8 @@ trump.update = function(timeStep) {
     //happy and alive.
     if(!this.isAlive() || !this.isHappy()) {
         this.world.gameMode = 'lose';
-        console.log('LOSE');
-        $('#game-result')
-        .html('<h2>You Lose! Trump will tweet about your stupidity!</h2>')
-        .dialog();
+        // console.log('LOSE');
+        
     }
 
     //allow standard character movement unless in other gamemodes.
