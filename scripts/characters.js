@@ -10,6 +10,8 @@ trump.init = function(obj, world) {
 
     this.currentMoveState = 'pace';
     this.walkingDirection = 'left';
+
+    this.happinessCounter = 0;
 };
 
 trump.createDomElement = function() {
@@ -69,6 +71,8 @@ trump.draw = function(timeStep, moveState) {
     this.domElement.image.attr('src', this.asset);
     this.domElement.css('left', `${this.position.x}%`);
     this.domElement.css('bottom', `${this.position.y}%`);
+
+    
 };
 
 trump.update = function(timeStep) {
@@ -100,7 +104,9 @@ trump.update = function(timeStep) {
         trump.deltaEnergy(CONSTANTS.timeEnergyDelta);
     }
     
-
+    if ($(window).width() < 768) {
+        this.position.y = 35;
+    }
     
 };
 

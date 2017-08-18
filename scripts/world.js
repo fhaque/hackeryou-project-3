@@ -41,6 +41,22 @@ world.update = function() {
         $('#game-world').css('cursor','default');
     }
 
+    if (CONSTANTS.poopProbability > Math.random()) {
+        trump.poop();
+    }
+
+    var trumpHappinessPercent = 100 * trump.happiness.current / (trump.happiness.max - trump.happiness.min);
+
+    if (trumpHappinessPercent > 75) {
+        trump.happinessCounter += 1;
+    } 
+    
+
+    if( world.checkIfWon() ) {
+        world.gameMode = 'win';
+        console.log("WIN");
+    }
+
 
     trump.update();
     poopFactory.update();
@@ -54,3 +70,7 @@ world.draw = function() {
     poopFactory.draw();
     // food.draw();
 };
+
+world.checkIfWon = function() {
+    return trump.happinessCounter >= CONSTANTS.happinessCounterWinCondition;
+}

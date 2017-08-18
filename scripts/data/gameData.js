@@ -19,7 +19,7 @@ const GAME_DATA = {
                 max:        CONSTANTS.maxPetEnergy,
             },
             
-            dirtyFactor: 0.1, //multiplier for being dirty
+            dirtyFactor: 0.05, //multiplier for being dirty
 
         },
         sprite: {
@@ -34,7 +34,7 @@ const GAME_DATA = {
         data: {},
         sprite: {
             position:   {x: 0, y: 0},
-            asset:      'assets/cartoon-office-BG.png',
+            asset:      '../assets/cartoon-office-BG.jpg',
             id:         'game-sceneBG',
         }
     },
@@ -43,7 +43,7 @@ const GAME_DATA = {
         data: {},
         sprite: {
             position:   CONSTANTS.initialPetPosition,
-            asset:      'assets/medium_poop.png',
+            asset:      'assets/donmoji-smile.png',
             id:         '',
             class:      'game-poop',
         }

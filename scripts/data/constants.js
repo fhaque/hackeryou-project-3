@@ -5,8 +5,8 @@ const CONSTANTS = {
     maxGameLogicLag: 240, // # of allowed updates
 
     //PET CONSTANTS //
-    initialPetHappiness: 80,
-    initialPetEnergy: 20,
+    initialPetHappiness: 70,
+    initialPetEnergy: 60,
     initialPetPosition: {
         x: 0,
         y: 25
@@ -18,8 +18,12 @@ const CONSTANTS = {
 
     feedEnergy: 10,
     
-    timeHappinessDelta: -0.01,
-    timeEnergyDelta: -0.007,
+    timeHappinessDelta: -0.02,
+    timeEnergyDelta: -0.07,
 
-    guessGameLoseHappinessDelta: -10
+    guessGameLoseHappinessDelta: -10,
+
+    poopProbability: 0.001,
+
+    happinessCounterWinCondition: 400
 };

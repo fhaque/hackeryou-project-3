@@ -259,35 +259,6 @@ button:focus {
   border-radius: 10px;
   text-transform: uppercase; }
 
-@media (max-width: 768px) {
-  .guessGame {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row; }
-  .characterCards {
-    -webkit-align-content: center;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    width: 75%; }
-  .card {
-    height: 180px;
-    width: calc(50% - 20px); }
-  .traitButtons {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 25%; }
-  .traitButtons form {
-    text-align: left;
-    width: 100%; }
-  .win-or-lost {
-    top: 40%;
-    right: 65%; } }
-
 html {
   padding: 0;
   margin: 0; }
@@ -296,6 +267,24 @@ body {
   position: relative;
   padding: 0;
   margin: 0; }
+
+#game-instructions {
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 20px;
+  margin: 0 auto;
+  width: 75%; }
+
+.game-instructions-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 75%; }
+
+.game-instructions-close {
+  padding-left: 12%; }
 
 #game-world img {
   display: block;
@@ -306,9 +295,7 @@ body {
   -webkit-transform: translate(-50%, 50%);
   -ms-transform: translate(-50%, 50%);
   transform: translate(-50%, 50%);
-  width: 20%;
-  -webkit-filter: hue-rotate(90deg);
-  filter: hue-rotate(90deg); }
+  width: 30%; }
 
 #game-sceneBG {
   position: absolute;
@@ -317,7 +304,7 @@ body {
   right: 0;
   bottom: 0;
   top: 0;
-  background-image: url("../assets/cartoon-office-BG.png");
+  background-image: url("../assets/cartoon-office-BG.jpg");
   background-size: cover;
   background-position: center; }
 
@@ -331,28 +318,196 @@ body {
 #game-world {
   height: 100vh;
   width: 100%;
+  overflow: hidden;
   /* z-index: 1; */ }
 
+.happiness, .energy {
+  width: 40%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 10px 0; }
+  .happiness p, .energy p {
+    width: 20%;
+    padding-right: 10px;
+    margin: 0; }
+
 .bar {
-  width: 30%;
+  width: 80%;
+  max-width: 500px;
   min-height: 20px;
   height: 20px;
   /* z-index: 1; */
-  border: 1px solid red; }
+  border: 2px solid #8c242e;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); }
 
 .bar__level {
   /* width: 60%; */
   /* min-height: 100%; */
   height: 100%;
+  border-radius: 10px;
   /* z-index: 1; */
-  background-color: blue; }
+  background-color: #145478; }
 
-#game-buttons button {
-  display: block; }
+#game-buttons {
+  width: 12%; }
+  #game-buttons button {
+    width: 100%;
+    display: block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px solid white; }
+    #game-buttons button:hover {
+      color: white;
+      border: 1px solid #8c242e;
+      background-color: #8c242e;
+      -webkit-box-shadow: 0px 0px 10px 0px rgba(83, 100, 160, 0.75);
+      box-shadow: 0px 0px 10px 0px rgba(83, 100, 160, 0.75);
+      -webkit-transform: scale(1.02, 1.02);
+      -ms-transform: scale(1.02, 1.02);
+      transform: scale(1.02, 1.02); }
 
 .game-food {
   position: absolute;
-  left: 5%;
-  top: 50%;
   display: none;
   width: 5%; }
+
+@media (max-width: 768px) {
+  .guessGame {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row; }
+  .characterCards {
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    width: 50%; }
+  .card {
+    border: 1px solid #D3D3D3;
+    -webkit-box-shadow: 5px 5px 2px #D3D3D3;
+    box-shadow: 5px 5px 2px #D3D3D3;
+    border-radius: 30px;
+    height: 90px;
+    width: calc(50% - 20px);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0x;
+    background: #F5F5F5; }
+  .card h2 {
+    text-align: center;
+    font-size: 12px;
+    margin: 0 0 10px 0; }
+  .card img {
+    padding: 10px 0;
+    max-width: 90%;
+    max-height: 80%; }
+  .traitButtons {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start; }
+  .traitButtons form {
+    width: 33.33%;
+    margin: 0;
+    padding: 0; }
+    .traitButtons form button {
+      margin: 0;
+      padding: 10px 0;
+      font-size: 12px; }
+  .ui-button {
+    font-size: 18px;
+    margin: 0;
+    padding: 10px; }
+  .ui-dialog {
+    padding: 0; }
+  .win-or-lost {
+    top: 40%;
+    right: 65%; }
+  .bars {
+    width: 50%; }
+  .game-hud {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background: rgba(255, 255, 255, 0.5); }
+  .happiness, .energy {
+    width: 90%; }
+    .happiness p, .energy p {
+      width: 30%;
+      padding-right: 10px; }
+  .bar {
+    width: 70%;
+    min-height: 20px;
+    height: 20px; }
+  #game-world {
+    max-height: 450px; }
+  #game-buttons {
+    width: 50%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+    #game-buttons button {
+      font-size: 16px;
+      padding: 0;
+      margin: 5px; }
+  #game-trump {
+    width: 35%; }
+    #game-trump img {
+      position: relative;
+      bottom: 50%;
+      left: 0; }
+  .game-food {
+    position: absolute;
+    left: 30px;
+    display: none;
+    width: 8%; }
+  .game-poop {
+    width: 9%; }
+    .game-poop img {
+      position: absolute;
+      bottom: 0;
+      left: 0; } }
+
+@media (max-width: 568px) {
+  #game-world:after {
+    content: 'Turn to Landscape on mobile';
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: -10%; } }

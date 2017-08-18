@@ -8,21 +8,41 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
 <body>
+	<div id="game-instructions">
+		<h1>Welcome to Trump-o-gatchi!</h1>
+		<h2>Keep Trump Happy and Alive!!!</h2>
+		<h3>Instructions:</h3>
+		<ul>
+			<li>Keep Trump Happy by cleaning his poop ("Clean Poop") and playing the game ("Play Game"). </li>
+			<li>Keep Trump's energy high by feeding him the Twitter bird! Hit "Feed Trump" and drag the bird to Trump!</li>
+			<li>If Trump is happy long enough you win! If he runs out of energy or not happy, you lose!</li>
+
+		</ul>
+	</div>
+	<div id="game-result"></div>
 
   <div id="game-world">
-    <div id="game-bars" class="bars">
-      <div id="game-happiness-bar" class="bar bar--happiness">
-        <div class="bar__level"></div>
-      </div>
-      <div id="game-energy-bar" class="bar bar--energy">
-          <div class="bar__level"></div>
-      </div>
-    </div>
-    <div id="game-buttons">
-      <button id="game-play-guess-game">Play Game</button>
-      <button id="game-feed">Feed Trump</button>  
-      <button id="game-clean-poop">Clean Poop</button> 
-    </div>
+		<div class="game-hud">
+			<div id="game-bars" class="bars">
+				<div class="happiness">
+					<p>Happiness:</p>
+					<div id="game-happiness-bar" class="bar bar--happiness">
+						<div class="bar__level"><span id="game-happiness-text"></span></div>
+					</div>
+				</div>
+				<div class="energy">
+					<p>Energy:</p>
+					<div id="game-energy-bar" class="bar bar--energy">
+							<div class="bar__level"><span id="game-energy-text"></span></div>
+					</div>
+				</div>
+			</div>
+			<div id="game-buttons">
+				<button id="game-play-guess-game">Play Game</button>
+				<button id="game-feed">Feed Trump</button>  
+				<button id="game-clean-poop">Clean Poop</button> 
+			</div>
+		</div>
     <div id="game-sceneBG"></div>
   </div>
 
@@ -40,11 +60,13 @@
 				<button class="guess-button" data-category="age" id="max-70">60 - 70</button>
 				<button class="guess-button" data-category="age" id="max-80">70 - 80</button>
 			</form>
-			<form class="gender">
-				<h3>Gender</h3>
-				<button class="guess-button" data-category="gender" id="female">Female</button>
-				<button class="guess-button" data-category="gender" id="male">Male</button>
-			</form>
+			<form class="eyes">
+					<h3>Eye Color</h3>
+					<button class="guess-button" data-category="eyeColor" id="blue">Blue</button>
+					<button class="guess-button" data-category="eyeColor" id="brown">Brown</button>
+					<button class="guess-button" data-category="eyeColor" id="green">Green</button>
+					<button class="guess-button" data-category="eyeColor" id="hazel">Hazel</button>
+				</form>
 			<form class="hair">
 				<h3>Hair Color</h3>
 				<button class="guess-button" data-category="hairColor" id="grey">Grey</button>
@@ -52,12 +74,10 @@
 				<button class="guess-button" data-category="hairColor" id="blonde">Blonde</button>
 				<button class="guess-button" data-category="hairColor" id="brown">Brown</button>
 			</form>
-			<form class="eyes">
-				<h3>Eye Color</h3>
-				<button class="guess-button" data-category="eyeColor" id="blue">Blue</button>
-				<button class="guess-button" data-category="eyeColor" id="brown">Brown</button>
-				<button class="guess-button" data-category="eyeColor" id="green">Green</button>
-				<button class="guess-button" data-category="eyeColor" id="hazel">Hazel</button>
+			<form class="gender">
+					<h3>Gender</h3>
+					<button class="guess-button" data-category="gender" id="female">Female</button>
+					<button class="guess-button" data-category="gender" id="male">Male</button>
 			</form>
 			<form class="party">
 				<h3>Political Party</h3>

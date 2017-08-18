@@ -1,4 +1,12 @@
+// document.body.requestFullscreen();
+
 $(function() {
+    $('#game-instructions').dialog().removeAttr('style').parent().addClass('game-instructions-dialog');
+    $('.game-instructions-dialog').removeAttr('style');
+
+    $('.game-instructions-dialog').find('.ui-dialog-titlebar').addClass('game-instructions-close');
+
+
 
     var guessGameResults = {};
     guessGameResults.win = false;
@@ -42,15 +50,12 @@ $(function() {
 
     world.loop.call(world);
 
-    
-
     $('#game-play-guess-game').on('click', function() {
         $('.guessGame').dialog({
             width: 800,
             open: function() {
                 world.gameMode = 'guess-who';
                 guessGame(guessGameResults);
-
                 $('.ui-dialog').removeAttr('style');
                 $('.guessGame').css('display', 'flex');  
                 $('#game-buttons').hide(); 
