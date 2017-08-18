@@ -52,7 +52,7 @@ const GAME_DATA = {
     food: {
         data: {},
         sprite: {
-            position:   {x: 0, y: 0},
+            position:   {x: 10, y: 0},
             asset:      'assets/twitter-bird.png',
             id:         '',
             class:      'game-food'

@@ -352,5 +352,7 @@ body {
 
 .game-food {
   position: absolute;
+  left: 5%;
+  top: 50%;
   display: none;
   width: 5%; }

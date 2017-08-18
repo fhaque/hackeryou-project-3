@@ -42,12 +42,15 @@ $(function() {
 
     world.loop.call(world);
 
+    
+
     $('#game-play-guess-game').on('click', function() {
         $('.guessGame').dialog({
             width: 800,
             open: function() {
-                guessGame(guessGameResults);
                 world.gameMode = 'guess-who';
+                guessGame(guessGameResults);
+
                 $('.ui-dialog').removeAttr('style');
                 $('.guessGame').css('display', 'flex');  
                 $('#game-buttons').hide(); 
@@ -61,8 +64,6 @@ $(function() {
                 } else {
                     trump.deltaHappiness(CONSTANTS.guessGameLoseHappinessDelta);
                 }
-                // $('.win-or-lost').css(`display`, 'none');
-                $('.characterCards').empty();
             }
         });
     });

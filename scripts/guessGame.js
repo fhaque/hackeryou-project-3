@@ -1,9 +1,10 @@
-
-
-
-
 var guessGame = function(gameResult) {
+	$('.characterCards').empty();
 	$('.win-or-lost').css(`display`, 'none');
+	$('.guess-button').show().off();
+
+
+
 	var gameData = [
 		{
 			name: "Steve Bannon", 
@@ -166,9 +167,9 @@ var guessGame = function(gameResult) {
 
 	var computerChoice = array[Math.floor(Math.random()*array.length)];
 	var chosen = [];
-	console.log(chosen);
+	// console.log(chosen);
 	for( var element in computerChoice) {
-		chosen.push(computerChoice[element])
+		chosen.push(computerChoice[element]);
 	}
 
 	var ageArray = [];
@@ -180,7 +181,7 @@ var guessGame = function(gameResult) {
 
 	for(var i = 0; i < array.length; i++) {
 		var person = array[i];
-		console.log(person);
+		// console.log(person);
 		$('.characterCards').append(
 			`<div class="card" 
 					data-age="${person.age}"
@@ -202,73 +203,73 @@ var guessGame = function(gameResult) {
 
 	for (var i = 0; i < ageArray.length; i++) {
 		if (ageArray.includes('30 - 40') === false){
-			$('#max-40').remove();
+			$('#max-40').hide();
 		}
 		if (ageArray.includes('40 - 50') === false){
-			$('#max-50').remove();
+			$('#max-50').hide();
 		}
 		if (ageArray.includes('50 - 60') === false){
-			$('#max-60').remove();
+			$('#max-60').hide();
 		}
 		if (ageArray.includes('60 - 70') === false){
-			$('#max-70').remove();
+			$('#max-70').hide();
 		}
 		if (ageArray.includes('70 - 80') === false){
-			$('#max-80').remove();
+			$('#max-80').hide();
 		}
 	};
 
 	for (var i = 0; i < genderArray.length; i++) {
 		if (genderArray.includes('Female') === false) {
-			$('form.gender').remove();
+			$('form.gender').hide();
 		}
 	}
 	for (var i = 0; i < hairArray.length; i++) {
 		if (hairArray.includes('Grey') === false) {
-			$('#grey').remove()
+			$('#grey').hide();
 		}
 		if (hairArray.includes('Salt and Pepper') === false) {
-			$('#salt-pepper').remove()
+			$('#salt-pepper').hide();
 		}
 		if (hairArray.includes('Blonde') === false) {
-			$('#blonde').remove()
+			$('#blonde').hide();
 		}
 		if (hairArray.includes('Brown') === false) {
-			$('#brown').remove();
+			$('#brown').hide();
 		}
 	}
 	for (var i = 0; i < eyeArray.length; i++) {
 		if (eyeArray.includes('Blue') === false) {
-			$('#blue').remove()
+			$('#blue').hide();
 		}
 		if (eyeArray.includes('Brown') === false) {
-			$('#brown').remove()
+			$('#brown').hide();
 		}
 		if (eyeArray.includes('Green') === false) {
-			$('#green').remove()
+			$('#green').hide();
 		}
 		if (eyeArray.includes('Hazel') === false) {
-			$('#hazel').remove()
+			$('#hazel').hide();
 		}
 	} 
 	for (var i = 0; i < politicalArray.length; i++) {
 		if(politicalArray.includes('Democratic') === false) {
-			$('#democratic').remove()
+			$('#democratic').hide();
 		}
-		if(politicalArray.includes('United Russian') === false) {
-			$('#UR').remove()
+		if(politicalArray.includes('United Russia') === false) {
+			$('#UR').hide();
 		}
-		if (politicalArray.includes('United Russian') === false && politicalArray.includes('Democratic') === false){
-			$('.party').remove();
+		if (politicalArray.includes('United Russia') === false && politicalArray.includes('Democratic') === false){
+			$('.party').hide();
 		}
 	}
 	for (var i = 0; i < ethnicityArray.length; i++) {
 		if (ethnicityArray.includes('African-American') === false) {
-			$('.ethnicity').remove()
+			$('.ethnicity').hide();
 		}
 	}
 
-	$('button').on('click', function(e){
+	$('.guess-button').on('click', function(e){
 		e.preventDefault();
 		var buttonVal = $(this).text();
 		var buttonCategory = $(this).data('category');
@@ -276,10 +277,10 @@ var guessGame = function(gameResult) {
 	});
 
 	var compareTraits = function(trait, category) {
-		console.log(trait);
-		console.log(category)
+		// console.log(trait);
+		// console.log(category);
 			if (chosen.includes(trait)) {
-				console.log('has it')
+				// console.log('has it');
 				//  _.find(array, function(item) {return item[category] !== trait});
 				$('.card').not(`[data-${category}="${trait}"]`).fadeOut();
 			} else if (chosen.includes(trait) === false ) {
@@ -292,10 +293,10 @@ var guessGame = function(gameResult) {
 	 	var name = $(this).find('h2').text();
 	 	if ( name === computerChoice.name ) {
 			 gameResult.win = true;
-	 		$('.win-or-lost').text(`Winner!`);
+			 $('.win-or-lost').text(`Winner!`);
 	 	} else {
 			 gameResult.win = false;
-	 		$('.win-or-lost').text(`Loser!`);
+			 $('.win-or-lost').text(`Loser!`);
 	 	}
 		 $('.win-or-lost').css('padding', '10px 20px');
 		 $('.win-or-lost').css(`display`, 'block');
