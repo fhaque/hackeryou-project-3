@@ -83,6 +83,10 @@ trump.update = function(timeStep) {
     //happy and alive.
     if(!this.isAlive() || !this.isHappy()) {
         this.world.gameMode = 'lose';
+        console.log('LOSE');
+        $('#game-result')
+        .html('<h2>You Lose! Trump will tweet about your stupidity!</h2>')
+        .dialog();
     }
 
     //allow standard character movement unless in other gamemodes.
@@ -135,7 +139,7 @@ trump.deltaHappiness = function(delta) {
 trump.pace = function(val) {
     if (this.position.x <= this.world.boundary.left + 10) {
         this.moveRight(val);
-    } else if (this.position.x >= this.world.boundary.right - 50) {
+    } else if (this.position.x >= this.world.boundary.right -20) {
         this.moveLeft(val);
     } else if (this.walkingDirection === 'left') {
         this.moveLeft(val);

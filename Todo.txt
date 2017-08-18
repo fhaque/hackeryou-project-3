@@ -1,0 +1,6 @@
+-remove Close buttons for the win and lose dialog boxes (game-result box) -- Fatin
+-style the game-result boxes. Remove default styles from the parent (basically copy the game-instructions JS code in mainGame.js ) -- Fatin
+-ad Guess Game instructions to the game-instructions dialog box. -- Emma
+-cleanup CSS and JS files: CSS (Emma), JS (Fatin) 
+-add Credits -- Emma
+-media query breakpoint fix 1040px -- Emma

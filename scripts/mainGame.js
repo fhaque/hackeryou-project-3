@@ -1,10 +1,7 @@
 // document.body.requestFullscreen();
 
 $(function() {
-    $('#game-instructions').dialog().removeAttr('style').parent().addClass('game-instructions-dialog');
-    $('.game-instructions-dialog').removeAttr('style');
-
-    $('.game-instructions-dialog').find('.ui-dialog-titlebar').addClass('game-instructions-close');
+    
 
 
 
@@ -26,10 +23,23 @@ $(function() {
     gameBars.init(trump);
 
     poopFactory.init(GAME_DATA.poop, world);
-    
-    setTimeout(() => trump.poop(), 1000);
 
-    setTimeout(() => trump.poop(), 1600);
+
+    $('#game-instructions').dialog({
+        open: function() {
+            world.gameMode = 'pause';
+            
+        },
+        close: function() {
+            $('#game-instructions').dialog('destroy').remove();
+            world.gameMode = 'normal';
+            world.loop.call(world);
+
+        }
+    }).removeAttr('style').parent().addClass('game-instructions-dialog');
+    $('.game-instructions-dialog').removeAttr('style');
+
+    $('.game-instructions-dialog').find('.ui-dialog-titlebar').addClass('game-instructions-close');
 
 
     $('#game-feed').on('click', function(){
@@ -48,7 +58,7 @@ $(function() {
 
     world.gameMode = 'normal';
 
-    world.loop.call(world);
+    
 
     $('#game-play-guess-game').on('click', function() {
         $('.guessGame').dialog({
@@ -69,8 +79,12 @@ $(function() {
                 } else {
                     trump.deltaHappiness(CONSTANTS.guessGameLoseHappinessDelta);
                 }
+
             }
         });
     });
+
+
+    
     
 });

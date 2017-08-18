@@ -5,7 +5,7 @@ const GAME_DATA = {
 
     trump: {
         data: {
-            states: ['happy', 'angry', 'dirty', 'normal'],
+            states: ['happy', 'angry', 'dirty', 'normal', 'pause'],
             
             happiness: {
                 current:    CONSTANTS.initialPetHappiness,

@@ -55,6 +55,10 @@ world.update = function() {
     if( world.checkIfWon() ) {
         world.gameMode = 'win';
         console.log("WIN");
+
+        $('#game-result')
+        .html('<h2>Congrats? Trump will consider you for a cabinet position.</h2>')
+        .dialog();
     }
 
 
