@@ -23,8 +23,8 @@ const CONSTANTS = {
 
     feedEnergy: 10,
     
-    timeHappinessDelta: -0.02,
-    timeEnergyDelta: -0.07,
+    timeHappinessDelta: -0.04,
+    timeEnergyDelta: -0.1,
 
     guessGameLoseHappinessDelta: -10,
 
