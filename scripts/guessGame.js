@@ -61,62 +61,60 @@ var guessGame = function(gameResult) {
 		ethnicityArray.push(person.ethnicity);
 	};
 
-<<<<<<< HEAD
-		if (ageArray.includes('30 - 40') === false){
-			$('#max-40').hide();
-		}
-		if (ageArray.includes('40 - 50') === false){
-			$('#max-50').hide();
-		}
-		if (ageArray.includes('50 - 60') === false){
-			$('#max-60').hide();
-		}
-		if (ageArray.includes('60 - 70') === false){
-			$('#max-70').hide();
-		}
-		if (ageArray.includes('70 - 80') === false){
-			$('#max-80').hide();
-		}
-		if (genderArray.includes('Female') === false) {
-			$('form.gender').hide();
-		}
-		if (hairArray.includes('Grey') === false) {
-			$('#grey').hide();
-		}
-		if (hairArray.includes('Salt and Pepper') === false) {
-			$('#salt-pepper').hide();
-		}
-		if (hairArray.includes('Blonde') === false) {
-			$('#blonde').hide();
-		}
-		if (hairArray.includes('Brown') === false) {
-			$('#brown').hide();
-		}
-		if (eyeArray.includes('Blue') === false) {
-			$('#blue').hide();
-		}
-		if (eyeArray.includes('Brown') === false) {
-			$('#brown').hide();
-		}
-		if (eyeArray.includes('Green') === false) {
-			$('#green').hide();
-		}
-		if (eyeArray.includes('Hazel') === false) {
-			$('#hazel').hide();
-		}
-		if(politicalArray.includes('Democratic') === false) {
-			$('#democratic').hide();
-		}
-		if(politicalArray.includes('United Russia') === false) {
-			$('#UR').hide();
-		}
-		if (politicalArray.includes('United Russia') === false && politicalArray.includes('Democratic') === false){
-			$('.party').hide();
-		}
-		if (ethnicityArray.includes('African-American') === false) {
-			$('.ethnicity').hide();
-		}
-=======
+	if (ageArray.includes('30 - 40') === false){
+		$('#max-40').hide();
+	}
+	if (ageArray.includes('40 - 50') === false){
+		$('#max-50').hide();
+	}
+	if (ageArray.includes('50 - 60') === false){
+		$('#max-60').hide();
+	}
+	if (ageArray.includes('60 - 70') === false){
+		$('#max-70').hide();
+	}
+	if (ageArray.includes('70 - 80') === false){
+		$('#max-80').hide();
+	}
+	if (genderArray.includes('Female') === false) {
+		$('form.gender').hide();
+	}
+	if (hairArray.includes('Grey') === false) {
+		$('#grey').hide();
+	}
+	if (hairArray.includes('Salt and Pepper') === false) {
+		$('#salt-pepper').hide();
+	}
+	if (hairArray.includes('Blonde') === false) {
+		$('#blonde').hide();
+	}
+	if (hairArray.includes('Brown') === false) {
+		$('#brown').hide();
+	}
+	if (eyeArray.includes('Blue') === false) {
+		$('#blue').hide();
+	}
+	if (eyeArray.includes('Brown') === false) {
+		$('#brown').hide();
+	}
+	if (eyeArray.includes('Green') === false) {
+		$('#green').hide();
+	}
+	if (eyeArray.includes('Hazel') === false) {
+		$('#hazel').hide();
+	}
+	if(politicalArray.includes('Democratic') === false) {
+		$('#democratic').hide();
+	}
+	if(politicalArray.includes('United Russia') === false) {
+		$('#UR').hide();
+	}
+	if (politicalArray.includes('United Russia') === false && politicalArray.includes('Democratic') === false){
+		$('.party').hide();
+	}
+	if (ethnicityArray.includes('African-American') === false) {
+		$('.ethnicity').hide();
+	}
 
 	if (ageArray.includes('30 - 40') === false){
 		$('#max-40').hide();
@@ -166,7 +164,6 @@ var guessGame = function(gameResult) {
 	if (eyeArray.includes('Hazel') === false) {
 		$('#hazel').hide();
 	}
->>>>>>> 86aead0d762ddc4194d8bf8d3b0b11052eb870b8
 
 
 	if(politicalArray.includes('Democratic') === false) {

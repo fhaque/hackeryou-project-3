@@ -126,19 +126,15 @@ trump.update = function(timeStep) {
         trump.deltaEnergy(CONSTANTS.timeEnergyDelta);
     }
     
-<<<<<<< HEAD
-    if ($(window).width() < 768) {
-        this.position.y = 31;
-    }
-    
-=======
     //shift Trump y-position if smaller screen
     if ($(window).width() < CONSTANTS.smallWindowWidth) {
-        this.position.y = 35;
+        this.position.y = 31;
+        if ($(window).height() > 400) {
+            this.position.y = 25;
+        }
     } else {
         this.position.y = 25;
     } 
->>>>>>> 86aead0d762ddc4194d8bf8d3b0b11052eb870b8
 };
 
 //Change Stats ////////////

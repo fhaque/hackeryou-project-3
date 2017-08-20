@@ -251,7 +251,9 @@ button:focus {
 @media (max-width: 768px) {
 
 	#game-instructions {
+		padding-bottom: 2px;
 		width: 95%;
+		
 		h1, h2, h3 {
 			margin: 5px 0;
 		}
