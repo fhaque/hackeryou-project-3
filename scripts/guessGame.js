@@ -1,177 +1,37 @@
+//Guess Who game function
+// gameResult: object to pass in that will be modified 
+// 			   to gameResult.win = boolean
 var guessGame = function(gameResult) {
+	//reset DOM elements.
 	$('.characterCards').empty();
 	$('.win-or-lost').css(`display`, 'none');
 	$('.guess-button').show().off();
 
+	var gameData = GAME_DATA.guessGameData;
 
-
-	var gameData = [
-		{
-			name: "Steve Bannon", 
-			age: "60 - 70",
-			gender: "Male",
-			hairColor: "Grey",
-			eyeColor: "Blue",
-			politicalParty: "Republican",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/bannon.png'
-		},
-		{
-			name: "Ben Carson",
-			age: "60 - 70",
-			gender: "Male",
-			hairColor: "Salt and Pepper",
-			eyeColor: "Brown",
-			politicalParty: "Republican",
-			ethnicity: "African-American",
-			asset: 'assets/guessGame/ben.png'
-		},
-		{
-			name: "Bernie Sanders",
-			age: "70 - 80",
-			gender: "Male",
-			hairColor: "Grey",
-			eyeColor: "Hazel",
-			politicalParty: "Democratic",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/bernie.png'
-		},
-		{
-			name: "Hillary Clinton",
-			age: "60 - 70",
-			gender: "Female",
-			hairColor: "Blonde",
-			eyeColor: "Blue",
-			politicalParty: "Democratic",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/hillary.png'
-		},
-		{
-			name: "Ivanka Trump",
-			age: "30 - 40",
-			gender: "Female",
-			hairColor: "Blonde",
-			eyeColor: "Brown",
-			politicalParty: "Republican",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/ivanka.png'
-		},
-		{
-			name: "Jared Kushner",
-			age: "30 - 40",
-			gender: "Male",
-			hairColor: "Brown",
-			eyeColor: "Brown",
-			politicalParty: "Republican",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/jared.png'
-		},
-		{
-			name: "Jeff Sessions",
-			age: "70 - 80",
-			gender: "Male",
-			hairColor: "Grey",
-			eyeColor: "Hazel",
-			politicalParty: "Republican",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/jeff.png'
-		},
-		{
-			name: "Kellyanne Conway",
-			age: "50 - 60",
-			gender: "Female",
-			hairColor: "Blonde",
-			eyeColor: "Blue",
-			politicalParty: "Republican",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/kelly.png'
-		},
-		{
-			name: "Mike Pence",
-			age: "50 - 60",
-			gender: "Male",
-			hairColor: "Grey",
-			eyeColor: "Hazel",
-			politicalParty: "Republican",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/mike.png'
-		},
-		{
-			name: "Barack Obama",
-			age: "50 - 60",
-			gender: "Male",
-			hairColor: "Salt and Pepper",
-			eyeColor: "Brown",
-			politicalParty: "Democratic",
-			ethnicity: "African-American",
-			asset: 'assets/guessGame/obama.png'
-		},
-		{
-			name: "Paul Ryan",
-			age: "40 - 50",
-			gender: "Male",
-			hairColor: "Brown",
-			eyeColor: "Blue",
-			politicalParty: "Republican",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/paul.png'
-		},
-		{
-			name: "Vladimir Putin",
-			age: "60 - 70",
-			gender: "Male",
-			hairColor: "Grey",
-			eyeColor: "Blue",
-			politicalParty: "United Russia",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/putin.png'
-		},
-		{
-			name: "Donald Trump",
-			age: "70 - 80",
-			gender: "Male",
-			hairColor: "Blonde",
-			eyeColor: "Blue",
-			politicalParty: "Republican",
-			ethnicity: "White",
-			asset: 'assets/guessGame/trump.png'
-		},
-		{
-			name: "Ted Cruz",
-			age: "40 - 50",
-			gender: "Male", 
-			hairColor: "Salt and Pepper",
-			eyeColor: "Brown",
-			politicalParty: "Republican",
-			ethnicity: "Caucasian",
-			asset: 'assets/guessGame/ted.png'
-		}
-	];
-	
-
-
+	//randomize character order
 	var newCharacterOrder = gameData.sort(function() {
 			return 0.5 -  Math.random();
 	});
-	var mobileCharacters = newCharacterOrder.slice(0,6)
+	
+	
+	//change the game characters allowed when on smaller screen
+	var mobileCharacters = newCharacterOrder.slice(0,6);
 
-	if ($(window).width() < 768) {
-		var array = mobileCharacters
-			
+	if ($(window).width() < CONSTANTS.smallWindowWidth) {
+		var array = mobileCharacters;	
 	} else {
 		var array = newCharacterOrder;
 	}
 
-	
-	
-
+	//pick a random winning character.
 	var computerChoice = array[Math.floor(Math.random()*array.length)];
 	var chosen = [];
-	// console.log(chosen);
 	for( var element in computerChoice) {
 		chosen.push(computerChoice[element]);
 	}
 
+	//Dynamically add character card DOM elements
 	var ageArray = [];
 	var genderArray = [];
 	var hairArray = [];
@@ -181,7 +41,7 @@ var guessGame = function(gameResult) {
 
 	for(var i = 0; i < array.length; i++) {
 		var person = array[i];
-		// console.log(person);
+
 		$('.characterCards').append(
 			`<div class="card" 
 					data-age="${person.age}"
@@ -201,6 +61,7 @@ var guessGame = function(gameResult) {
 		ethnicityArray.push(person.ethnicity);
 	};
 
+<<<<<<< HEAD
 		if (ageArray.includes('30 - 40') === false){
 			$('#max-40').hide();
 		}
@@ -255,7 +116,76 @@ var guessGame = function(gameResult) {
 		if (ethnicityArray.includes('African-American') === false) {
 			$('.ethnicity').hide();
 		}
+=======
 
+	if (ageArray.includes('30 - 40') === false){
+		$('#max-40').hide();
+	}
+	if (ageArray.includes('40 - 50') === false){
+		$('#max-50').hide();
+	}
+	if (ageArray.includes('50 - 60') === false){
+		$('#max-60').hide();
+	}
+	if (ageArray.includes('60 - 70') === false){
+		$('#max-70').hide();
+	}
+	if (ageArray.includes('70 - 80') === false){
+		$('#max-80').hide();
+	}
+
+
+	if (genderArray.includes('Female') === false) {
+		$('form.gender').hide();
+	}
+	
+
+	if (hairArray.includes('Grey') === false) {
+		$('#grey').hide();
+	}
+	if (hairArray.includes('Salt and Pepper') === false) {
+		$('#salt-pepper').hide();
+	}
+	if (hairArray.includes('Blonde') === false) {
+		$('#blonde').hide();
+	}
+	if (hairArray.includes('Brown') === false) {
+		$('#brown').hide();
+	}
+	
+
+	if (eyeArray.includes('Blue') === false) {
+		$('#blue').hide();
+	}
+	if (eyeArray.includes('Brown') === false) {
+		$('#brown').hide();
+	}
+	if (eyeArray.includes('Green') === false) {
+		$('#green').hide();
+	}
+	if (eyeArray.includes('Hazel') === false) {
+		$('#hazel').hide();
+	}
+>>>>>>> 86aead0d762ddc4194d8bf8d3b0b11052eb870b8
+
+
+	if(politicalArray.includes('Democratic') === false) {
+		$('#democratic').hide();
+	}
+	if(politicalArray.includes('United Russia') === false) {
+		$('#UR').hide();
+	}
+	if (politicalArray.includes('United Russia') === false && politicalArray.includes('Democratic') === false){
+		$('.party').hide();
+	}
+	
+
+	if (ethnicityArray.includes('African-American') === false) {
+		$('.ethnicity').hide();
+	}
+	
+	//when a guess button is clicked, check the guess traits against
+	// displayed characters.
 	$('.guess-button').on('click', function(e){
 		e.preventDefault();
 		var buttonVal = $(this).text();
@@ -263,6 +193,7 @@ var guessGame = function(gameResult) {
 		compareTraits(buttonVal, buttonCategory);
 	});
 
+	//if any trait doesn't match with the chosen trait, remove card.
 	var compareTraits = function(trait, category) {
 			if (chosen.includes(trait)) {
 				$('.card').not(`[data-${category}="${trait}"]`).fadeOut();
@@ -271,6 +202,7 @@ var guessGame = function(gameResult) {
 			}
 	};
 	
+	//on selecting a card, determine if player won or lost.
 	 $('.card').on('click', function() {
 	 	var name = $(this).find('h2').text();
 	 	if ( name === computerChoice.name ) {

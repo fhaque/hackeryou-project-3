@@ -4,6 +4,9 @@ const CONSTANTS = {
     msecPerSec: 1000, // msec/sec
     maxGameLogicLag: 240, // # of allowed updates
 
+    //GAME WINDOW CONSTANTS
+    smallWindowWidth: 768,
+
     //PET CONSTANTS //
     initialPetHappiness: 70,
     initialPetEnergy: 60,
@@ -16,14 +19,19 @@ const CONSTANTS = {
     minPetEnergy: 0,
     maxPetEnergy: 100,
 
+    petWalkingSpeed: 0.2,
+
     feedEnergy: 10,
     
-    timeHappinessDelta: -0.02,
-    timeEnergyDelta: -0.07,
+    timeHappinessDelta: -0.04,
+    timeEnergyDelta: -0.1,
 
     guessGameLoseHappinessDelta: -10,
 
     poopProbability: 0.001,
 
-    happinessCounterWinCondition: 400
+    happinessCounterWinCondition: 400,
+
+    //POOP CONSTANTS
+    fallVelocity: 0.3,
 };
