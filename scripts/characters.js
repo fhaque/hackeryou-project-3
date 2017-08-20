@@ -129,8 +129,9 @@ trump.update = function(timeStep) {
     //shift Trump y-position if smaller screen
     if ($(window).width() < CONSTANTS.smallWindowWidth) {
         this.position.y = 35;
-    }
-    
+    } else {
+        this.position.y = 25;
+    } 
 };
 
 //Change Stats ////////////
