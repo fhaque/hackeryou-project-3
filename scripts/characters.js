@@ -1,35 +1,53 @@
+//////////////////////////////////////////////////////////////////////////
+
+
+// Trump Character
+
+
+//////////////////////////////////////////////////////////////////////////
+
 var trump = {};
+//Initialization function
+// obj: accepts Object from gameData.js
+// world: accepts a world Object from world.js
 trump.init = function(obj, world) {
+    //copy properties from object and reference to world
     this.world = world;
     $.extend(this, obj.data);
     $.extend(this, obj.sprite);
 
+    //construct DOM element (jQury Object) and bind to it.
     this.createDomElement();
     this.domElement.css('left', `${this.position.x}%`);
     this.domElement.css('bottom', `${this.position.y}%`);
 
+    //character states
     this.currentMoveState = 'pace';
     this.walkingDirection = 'left';
 
-    this.happinessCounter = 0;
+    this.happinessCounter = 0; //track condition for win.
 };
 
+//construct jQuery object of a div with an image.
 trump.createDomElement = function() {
-    
+    //construct jQuery object and bind to trump object
     this.domElement = $('<div>');
     this.domElement.image = $('<img>');
     this.domElement.append(this.domElement.image);
 
+    //add any game id set by gameData
     if (this.id != '') {
         this.domElement.attr('id', this.id);
     }
 
+    //add any classes set by gameData
     if ('class' in this) {
         this.domElement.addClass(this.class);
     }
     
 };
-    
+
+//removes DOM element from the world and page.
 trump.removeFromDom = function() {
     if (this.inDom) {
         this.domElement.remove();
@@ -37,33 +55,31 @@ trump.removeFromDom = function() {
     }
 };
 
+//function to add to DOM and world's DOM.
+//This is where eventListeners are set for the character.
 trump.addToDom = function() {
     var self = this;
 
+    //when game is in 'feed' mode, allow trump DOM element
+    //to be droppable.
     if (!this.inDom) {
-        // this.domElement.on('click', function() {
-        //     if(self.world.gameMode === 'feed') {
-        //         self.feed();
-        //         self.world.gameMode = 'normal';
-        //     }
-        // });
-
         trump.domElement.droppable({
             drop: function() {
                 self.feed();
-                // food.removeFromDom();
                 $('.game-food').css('display', 'none');
-                self.gameMode = 'normal';
-                console.log("DROPPED!!!");    
+                self.gameMode = 'normal';  
             }
         });
         
-
         this.world.domElement.append(this.domElement);
         this.inDom = true;
     }
 };
 
+//draw function called by world's draw function during game loop.
+// timeStep: not currently used, but specify interval past since last draw
+// moveState: not currentl used, but used to tell if there is a sprite
+// animation change that needs to happen.
 trump.draw = function(timeStep, moveState) {
     timeStep = timeStep || this.world.timeStep;
     this.addToDom();
@@ -75,17 +91,20 @@ trump.draw = function(timeStep, moveState) {
     
 };
 
+//update character state in game logic
+//timeStep: time interval past since last update.
 trump.update = function(timeStep) {
     timeStep = timeStep || this.world.timeStep;
-    walkingSpeed = 0.2; // 0.2: good for 60fps
+    walkingSpeed = CONSTANTS.petWalkingSpeed;
 
     //Check if Game over by checking if trump is
     //happy and alive.
     if(!this.isAlive() || !this.isHappy()) {
-        this.world.gameMode = 'lose';
-        // console.log('LOSE');
-        
+        this.world.gameMode = 'lose';   
     }
+
+    //update Trump's happiness counter if above happiness threshold
+    this.updateHappinessCounter();
 
     //allow standard character movement unless in other gamemodes.
     if (!(this.world.gameMode === 'win') 
@@ -101,12 +120,14 @@ trump.update = function(timeStep) {
         }
 
         //time dependent depletion in happiness
+        //based on poop on screen and time.
         trump.deltaHappiness(CONSTANTS.timeHappinessDelta - this.dirtyFactor * poopFactory.poopArray.length);
 
         trump.deltaEnergy(CONSTANTS.timeEnergyDelta);
     }
     
-    if ($(window).width() < 768) {
+    //shift Trump y-position if smaller screen
+    if ($(window).width() < CONSTANTS.smallWindowWidth) {
         this.position.y = 35;
     }
     
@@ -134,10 +155,19 @@ trump.deltaHappiness = function(delta) {
     this.deltaVal(delta, 'happiness');
 };
 
+trump.updateHappinessCounter = function() {
+    var trumpHappinessPercent = 100 * this.happiness.current / (this.happiness.max - this.happiness.min);
+    
+    if (trumpHappinessPercent > this.happyTreshold) {
+        trump.happinessCounter += 1;
+    } 
+}
+
+//Function that makes Trump pace left and right.
 trump.pace = function(val) {
     if (this.position.x <= this.world.boundary.left + 10) {
         this.moveRight(val);
-    } else if (this.position.x >= this.world.boundary.right -20) {
+    } else if (this.position.x >= this.world.boundary.right - 20) {
         this.moveLeft(val);
     } else if (this.walkingDirection === 'left') {
         this.moveLeft(val);
@@ -161,6 +191,8 @@ trump.moveRight = function(val) {
         this.position.x = this.world.boundary.right;
     }
 };
+
+//Character/Player action methods ////
 
 trump.poop = function() {
     var poop = poopFactory.createPoop({
@@ -198,7 +230,6 @@ trump.deltaVal = function(delta, propertyName) {
 
 //////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -210,35 +241,38 @@ trump.deltaVal = function(delta, propertyName) {
 
 gameBars = {};
 
+//bind game bars to the character and bind the DOM elements in the game.
+// character: game character object that has happiness and energy such as Trump.
 gameBars.init = function(character) {
     this.targetCharacter = character;
     this.domElement = $('#game-bars');
     this.domElement.happinessBar = $('#game-happiness-bar .bar__level');
     this.domElement.energyBar = $('#game-energy-bar .bar__level');
 
-    // console.log(this.domElement);
 };
 
+//update and draw the bar values based on character state.
 gameBars.draw = function() {
     var currentHappinessPercentage = 100 * this.targetCharacter.happiness.current / (this.targetCharacter.happiness.max - this.targetCharacter.happiness.min);
 
     var currentEnergyPercentage = 100 * this.targetCharacter.energy.current / (this.targetCharacter.energy.max - this.targetCharacter.energy.min);
 
-    // this.domElement.happinessBar.css('background-color', 'green');
     this.domElement.happinessBar.css('width', `${currentHappinessPercentage}%`);
     this.domElement.energyBar.css('width', `${currentEnergyPercentage}%`);
 };
 
+//////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////
 
 
-// Poop
+// Poop Factory
 
 
 //////////////////////////////////////////////////////////////////////////
 
 var poopFactory = {};
+
 poopFactory.init = function(obj, world) {
     this.world = world;
     $.extend(this, obj.data);
@@ -247,17 +281,23 @@ poopFactory.init = function(obj, world) {
     this.poopArray = [];
 };
 
+//create Poop object to put in game world.
+// position: initial position of poop in game world.
 poopFactory.createPoop = function(position) {
+    //bind poop to world and give it position
     const poop = {};
     poop.world = this.world;
     poop.position = position;
 
-    poop.fallVelocity = 0.3;
+    //poop constants
+    poop.fallVelocity = CONSTANTS.fallVelocity;
     poop.inDom = false;
     
+    //give poop its own DOM element.
     poop.asset = this.asset;
     poop.domElement = this.createDomElement();
 
+    //poop update method to animate falling.
     poop.update = function() {
         this.fall(this.fallVelocity);
         
@@ -272,6 +312,8 @@ poopFactory.createPoop = function(position) {
         this.domElement.css('bottom', `${this.position.y}%`);
     };
 
+    //positioning poop at each iteration to animate falling.
+    // val: fall speed.
     poop.fall = function(val) {
         if (this.position.y <= this.world.boundary.bottom) {
             this.position.y = this.world.boundary.bottom;
@@ -280,17 +322,23 @@ poopFactory.createPoop = function(position) {
         }
     };
 
+    //add to DOM and contains needed Event Listeners.
+    //The even listener will remove poop from DOM and poopFactory's
+    // poopArray when player clicks during the 'clean-poop' game state.
     poop.addToDom = function() {
-        // console.log(this.world);
         if (!this.inDom) {
             var self = this;
-            //add event listener
+            //add event listener. Allow poop to be clickable if in
+            // 'clean-poop' game mode. Change game mode to 'normal'
+            // if all the poop is cleaned.
             this.domElement.on('click', function() {
                 if (self.world.gameMode === 'clean-poop') {
                     self.removeFromDom();
                     var index = poopFactory.poopArray.indexOf(self);
                     poopFactory.poopArray.splice(index, 1);
 
+                    //only allow game world to go normal if all the poop
+                    //is cleaned.
                     if (poopFactory.poopArray.length === 0) {
                         self.world.gameMode = 'normal';
                     }
@@ -309,6 +357,7 @@ poopFactory.createPoop = function(position) {
         }
     };
 
+    //allow poop to be trackable by poopFactory via poopArray.
     this.poopArray.push(poop);
 
     return poop;
@@ -346,6 +395,8 @@ poopFactory.draw = function() {
 
 //////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////
+
 
 // Food
 
@@ -359,8 +410,6 @@ food.init = function(obj, world) {
 
     this.inDom = false;
     this.createDomElement();
-
-    console.log(this.domElement);
 };
 
 food.createDomElement = function() {
@@ -390,7 +439,6 @@ food.addToDom = function() {
     var self = this;
 
     if (!this.inDom) {
-        console.log('added to DOM');
         this.domElement.draggable();
         this.domElement.removeAttr('style');
         
@@ -411,69 +459,3 @@ food.draw = function(timeStep) {
 food.update = function() {
 
 };
-
-
-
-//////////////////////////////////////////////////////////////////////////
-
-
-// Background Scene 
-
-
-//////////////////////////////////////////////////////////////////////////
-
-// var sceneBG = {};
-// sceneBG.init = function(obj, world) {
-//     this.world = world;
-//     $.extend(this, obj.data);
-//     $.extend(this, obj.sprite);
-
-//     this.createDomElement();
-//     this.domElement.css('left', `${this.position.x}%`);
-//     this.domElement.css('bottom', `${this.position.y}%`);
-// };
-
-// sceneBG.createDomElement = function() {
-    
-//             this.domElement = $('<div>');
-//             this.domElement.image = $('<img>');
-//             this.domElement.append(this.domElement.image);
-    
-//             if (this.id != '') {
-//                 this.domElement.attr('id', this.id);
-//             }
-    
-//             if ('class' in this) {
-//                 this.domElement.addClass(this.class);
-//             }
-    
-//     };
-    
-// sceneBG.removeFromDom = function() {
-//     if (this.inDom) {
-//         this.domElement.remove();
-//         this.inDom = false;
-//     }
-// };
-
-// sceneBG.addToDom = function() {
-//     // console.log(this.world);
-//     if (!this.inDom) {
-//         this.world.domElement.append(this.domElement);
-//         this.inDom = true;
-//     }
-// };
-
-// sceneBG.update = function() {
-
-// };
-
-// sceneBG.draw = function(timeStep, moveState) {
-//     timeStep = timeStep || this.world.timeStep;
-//     this.addToDom();
-
-//     this.domElement.image.attr('src', this.asset);
-//     this.domElement.css('left', `${this.position.x}%`);
-//     this.domElement.css('bottom', `${this.position.y}%`);
-// };
-
