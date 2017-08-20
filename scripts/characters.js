@@ -107,7 +107,7 @@ trump.update = function(timeStep) {
     }
     
     if ($(window).width() < 768) {
-        this.position.y = 35;
+        this.position.y = 31;
     }
     
 };
