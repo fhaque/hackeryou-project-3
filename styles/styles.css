@@ -393,6 +393,12 @@ button:focus {
     width: 95%; }
     #game-instructions h1, #game-instructions h2, #game-instructions h3 {
       margin: 5px 0; }
+    #game-instructions h1 {
+      font-size: 18px; }
+    #game-instructions h2, #game-instructions h3 {
+      font-size: 14px; }
+    #game-instructions ul {
+      font-size: 14px; }
   .game-instructions-close {
     padding: 0; }
   .bars {
