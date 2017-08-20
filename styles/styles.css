@@ -133,6 +133,135 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+html {
+  padding: 0;
+  margin: 0; }
+
+body {
+  position: relative;
+  padding: 0;
+  margin: 0; }
+
+.game-instructions-dialog {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%; }
+
+.game-instructions-close {
+  padding-left: 12%; }
+
+#game-instructions {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin: 0 auto;
+  width: 75%; }
+
+.game-result-dialog {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%; }
+
+#game-result {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin: 0 auto;
+  width: 75%; }
+
+#game-world img {
+  display: block;
+  width: 100%; }
+
+#game-trump {
+  position: absolute;
+  -webkit-transform: translate(-50%, 50%);
+  -ms-transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%);
+  width: 30%; }
+
+#game-sceneBG {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-image: url("../assets/cartoon-office-BG.jpg");
+  background-size: cover;
+  background-position: center; }
+
+.game-poop {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 5%; }
+
+#game-world {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; }
+
+.happiness, .energy {
+  width: 40%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 10px 0; }
+  .happiness p, .energy p {
+    width: 30%;
+    padding-right: 10px;
+    margin: 0; }
+
+.bar {
+  width: 70%;
+  max-width: 500px;
+  min-height: 20px;
+  height: 20px;
+  border: 2px solid #8c242e;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); }
+
+.bar__level {
+  height: 100%;
+  border-radius: 10px;
+  background-color: #145478; }
+
+#game-buttons {
+  width: 12%; }
+  #game-buttons button {
+    width: 100%;
+    display: block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px solid white; }
+    #game-buttons button:hover {
+      color: white;
+      border: 1px solid #8c242e;
+      background-color: #8c242e;
+      -webkit-box-shadow: 0px 0px 10px 0px rgba(83, 100, 160, 0.75);
+      box-shadow: 0px 0px 10px 0px rgba(83, 100, 160, 0.75);
+      -webkit-transform: scale(1.02, 1.02);
+      -ms-transform: scale(1.02, 1.02);
+      transform: scale(1.02, 1.02); }
+
+.game-food {
+  position: absolute;
+  display: none;
+  width: 5%; }
+
 .wrapper {
   width: 90%;
   margin: 0 auto; }
@@ -259,141 +388,59 @@ button:focus {
   border-radius: 10px;
   text-transform: uppercase; }
 
-html {
-  padding: 0;
-  margin: 0; }
-
-body {
-  position: relative;
-  padding: 0;
-  margin: 0; }
-
-#game-instructions {
-  background-color: rgba(255, 255, 255, 0.75);
-  padding: 20px;
-  margin: 0 auto;
-  width: 75%; }
-
-.game-instructions-dialog {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%; }
-
-.game-instructions-close {
-  padding-left: 12%; }
-
-#game-result {
-  display: none;
-  background-color: rgba(255, 255, 255, 0.75);
-  padding: 20px;
-  margin: 0 auto;
-  width: 75%; }
-
-.game-result-dialog {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%; }
-
-#game-world img {
-  display: block;
-  width: 100%; }
-
-#game-trump {
-  position: absolute;
-  -webkit-transform: translate(-50%, 50%);
-  -ms-transform: translate(-50%, 50%);
-  transform: translate(-50%, 50%);
-  width: 30%; }
-
-#game-sceneBG {
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  background-image: url("../assets/cartoon-office-BG.jpg");
-  background-size: cover;
-  background-position: center; }
-
-.game-poop {
-  position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 5%; }
-
-#game-world {
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  /* z-index: 1; */ }
-
-.happiness, .energy {
-  width: 40%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  margin: 10px 0; }
-  .happiness p, .energy p {
-    width: 20%;
-    padding-right: 10px;
-    margin: 0; }
-
-.bar {
-  width: 80%;
-  max-width: 500px;
-  min-height: 20px;
-  height: 20px;
-  /* z-index: 1; */
-  border: 2px solid #8c242e;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); }
-
-.bar__level {
-  /* width: 60%; */
-  /* min-height: 100%; */
-  height: 100%;
-  border-radius: 10px;
-  /* z-index: 1; */
-  background-color: #145478; }
-
-#game-buttons {
-  width: 12%; }
-  #game-buttons button {
-    width: 100%;
-    display: block;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    border: 1px solid white; }
-    #game-buttons button:hover {
-      color: white;
-      border: 1px solid #8c242e;
-      background-color: #8c242e;
-      -webkit-box-shadow: 0px 0px 10px 0px rgba(83, 100, 160, 0.75);
-      box-shadow: 0px 0px 10px 0px rgba(83, 100, 160, 0.75);
-      -webkit-transform: scale(1.02, 1.02);
-      -ms-transform: scale(1.02, 1.02);
-      transform: scale(1.02, 1.02); }
-
-.game-food {
-  position: absolute;
-  display: none;
-  width: 5%; }
-
 @media (max-width: 768px) {
+  #game-instructions {
+    width: 95%; }
+    #game-instructions h1, #game-instructions h2, #game-instructions h3 {
+      margin: 5px 0; }
+  .game-instructions-close {
+    padding: 0; }
+  .bars {
+    width: 50%; }
+  .game-hud {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background: rgba(255, 255, 255, 0.5); }
+  .happiness, .energy {
+    width: 90%; }
+    .happiness p, .energy p {
+      width: 30%;
+      padding-right: 10px; }
+  .bar {
+    width: 70%;
+    min-height: 20px;
+    height: 20px; }
+  #game-world {
+    max-height: 450px; }
+  #game-buttons {
+    width: 50%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+    #game-buttons button {
+      font-size: 16px;
+      padding: 0;
+      margin: 5px; }
+  #game-trump {
+    width: 35%; }
+    #game-trump img {
+      position: relative;
+      bottom: 50%;
+      left: 0; }
+  .game-food {
+    position: absolute;
+    left: 30px;
+    display: none;
+    width: 8%; }
+  .game-poop {
+    width: 9%; }
+    .game-poop img {
+      position: absolute;
+      bottom: 0;
+      left: 0; }
   .guessGame {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -466,53 +513,7 @@ body {
     padding: 0; }
   .win-or-lost {
     top: 40%;
-    right: 65%; }
-  .bars {
-    width: 50%; }
-  .game-hud {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    background: rgba(255, 255, 255, 0.5); }
-  .happiness, .energy {
-    width: 90%; }
-    .happiness p, .energy p {
-      width: 30%;
-      padding-right: 10px; }
-  .bar {
-    width: 70%;
-    min-height: 20px;
-    height: 20px; }
-  #game-world {
-    max-height: 450px; }
-  #game-buttons {
-    width: 50%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex; }
-    #game-buttons button {
-      font-size: 16px;
-      padding: 0;
-      margin: 5px; }
-  #game-trump {
-    width: 35%; }
-    #game-trump img {
-      position: relative;
-      bottom: 50%;
-      left: 0; }
-  .game-food {
-    position: absolute;
-    left: 30px;
-    display: none;
-    width: 8%; }
-  .game-poop {
-    width: 9%; }
-    .game-poop img {
-      position: absolute;
-      bottom: 0;
-      left: 0; } }
+    right: 65%; } }
 
 @media (max-width: 568px) {
   #game-world:after {

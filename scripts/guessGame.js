@@ -217,7 +217,7 @@ var guessGame = function(gameResult) {
 		if (ageArray.includes('70 - 80') === false){
 			$('#max-80').hide();
 		}
-	};
+	}
 
 	for (var i = 0; i < genderArray.length; i++) {
 		if (genderArray.includes('Female') === false) {
@@ -277,14 +277,9 @@ var guessGame = function(gameResult) {
 	});
 
 	var compareTraits = function(trait, category) {
-		// console.log(trait);
-		// console.log(category);
 			if (chosen.includes(trait)) {
-				// console.log('has it');
-				//  _.find(array, function(item) {return item[category] !== trait});
 				$('.card').not(`[data-${category}="${trait}"]`).fadeOut();
 			} else if (chosen.includes(trait) === false ) {
-
 				$(`.card[data-${category}="${trait}"]`).fadeOut();
 			}
 	};

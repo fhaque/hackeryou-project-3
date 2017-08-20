@@ -78,7 +78,7 @@ world.update = function() {
                 resultHTML = `<h2>You Lose! Trump will tweet about your stupidity!</h2>`
             } else if (world.gameMode === 'win') {
                 console.log("WIN");
-                resultHTML = `<h2>Congrats? Trump will consider you for a cabinet position.</h2>`
+                resultHTML = `<h2>You Won!</h2><h3> Congrats? Trump will consider you for a cabinet position.</h3>`
             }
 
             clearInterval(this.setIntervalID);
