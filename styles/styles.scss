@@ -141,6 +141,17 @@ body {
 	position: absolute;
 	display: none;
 	width: 5%;
+
+	filter: drop-shadow(0px 0px 1px #000)
+			drop-shadow(0px 0px 2px #0084b4)
+			drop-shadow(0px 0px 4px yellow) 
+			drop-shadow(0px 0px 10px #FFFACD); 
+			// drop-shadow(-1px -1px 0 yellow);
+	
+	// // box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+	// img {
+	// 	filter: drop-shadow(0px 0px 5px #000);
+	// }
 }
 
 ///// Guess Game Styling

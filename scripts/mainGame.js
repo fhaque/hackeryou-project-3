@@ -23,12 +23,14 @@ $(function() {
     $('#game-instructions').dialog({
         open: function() {
             world.gameMode = 'pause';
+            $('#game-buttons').hide();
             
         },
         close: function() {
             $('#game-instructions').dialog('destroy').remove();
             world.gameMode = 'normal';
             world.setIntervalID = world.loop.call(world);
+            $('#game-buttons').show(); 
 
         }
     })
